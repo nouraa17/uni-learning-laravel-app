@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('price');
             $table->float('discount')->default(0); //value not percentage
             $table->text('note')->nullable();
+            $table->tinyInteger('is_locked')->default(0);
             $table->timestamps();
         });
     }

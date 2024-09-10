@@ -6,4 +6,5 @@ return [
     'phone' => 'phone',
     'password' => 'password',
     'type' => 'type',
+    'error_msg' => 'error',
 ];

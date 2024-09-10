@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class UserFormRequest extends FormRequest
 {
@@ -23,9 +24,15 @@ class UserFormRequest extends FormRequest
      */
     public function rules(): array
     {
+        if(Str::contains(request()->getRequestUri(),'login')){
+            return [
+                'phone' => 'required',
+                'password' => 'required',
+                ];
+        }
         return [
             'username' => 'required',
-            'email' => 'required|unique:users,id',
+            'email' => 'required|unique:users,email',
             'phone' => 'required',
             'password' => 'filled', // pass if not sent
             'type' => 'required',
@@ -36,7 +43,7 @@ class UserFormRequest extends FormRequest
         return [
 //            'type'=>'نوع المستخدم'
 
-            'username' => __('keywords.username'),
+//            'username' => __('keywords.username'),
             'email' => __('keywords.email'),
             'phone' => __('keywords.phone'),
             'password' => __('keywords.password'),
@@ -44,5 +51,12 @@ class UserFormRequest extends FormRequest
 
         ];
 
+    }
+
+    public function messages(){
+        return [
+            'username.required' => 'هذا حقل اجباري',
+            'type.required' => __('keywords.error_msg'),
+        ];
     }
 }
