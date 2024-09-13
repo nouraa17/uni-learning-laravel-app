@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\HandleDataBeforeSaveAction;
 use App\Filter\EndDateFilter;
 use App\Filter\NameFilter;
 use App\Filter\StartDateFilter;
+use App\Filter\SubjectIdFilter;
+use App\Http\Requests\GovernmentFormRequest;
 use App\Models\Government;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
@@ -14,6 +17,11 @@ class GovernmentControllerResource extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->only('store','update');
+    }
+
     public function index()
     {
 //        $data = Government::query();
@@ -35,6 +43,7 @@ class GovernmentControllerResource extends Controller
                 NameFilter::class,
                 StartDateFilter::class,
                 EndDateFilter::class,
+                SubjectIdFilter::class
             ])
             ->thenReturn()
             ->get();
@@ -44,9 +53,12 @@ class GovernmentControllerResource extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GovernmentFormRequest $request)
     {
-        //
+        $data = $request->validated();
+        $handled_data = HandleDataBeforeSaveAction::handle($data);
+//        return $handled_data;
+        Government::query()->create($handled_data);
     }
 
     /**

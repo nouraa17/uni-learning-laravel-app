@@ -19,6 +19,7 @@ class LoginController extends Controller
 //    }
     public function __invoke(UserFormRequest $request)
     {
+//        dd('token sent');
         $credentials = ['phone' => request('phone'), 'password' => request('password')];
         if (auth()->attempt($credentials)) { //auth()->attempt($credentials) returns 0 or 1
 //            dd(auth()->user());  // -> instance of User model
