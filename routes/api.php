@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CollegeControllerResource;
+use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\GovernmentControllerResource;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -24,8 +26,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) { //
 Route::group(['middleware' => 'changeLang'], function () {
     Route::post('/register', RegisterController::class);
     Route::post('/login', LoginController::class);
+    Route::resources([
+        'governments' => GovernmentControllerResource::class,
+        'colleges' => CollegeControllerResource::class
+    ]);
+    Route::post('/delete-item',DeleteController::class);
 });
 
-Route::resources([
-    'governments' => GovernmentControllerResource::class
-]);
+//Route::resources([
+//    'governments' => GovernmentControllerResource::class
+//]);

@@ -13,4 +13,7 @@ return [
     'en_name' => 'name in english',
     'ar_info' => 'info in arabic',
     'en_info' => 'info in english',
+
+    'government_id' => 'government id',
+
 ];

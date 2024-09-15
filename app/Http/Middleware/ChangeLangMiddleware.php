@@ -16,7 +16,11 @@ class ChangeLangMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (request()->hasHeader('lang')){
-            app()->setLocale(request()->header('lang'));
+            if (request()->header('lang') == ''){
+                app()->setLocale(app()->getLocale());
+            }else{
+                app()->setLocale(request()->header('lang'));
+            }
         }else if (request()->has('lang')){
             app()->setLocale(request('lang'));
         }else if (request()->has('lang')){
