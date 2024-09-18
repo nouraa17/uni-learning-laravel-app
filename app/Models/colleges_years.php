@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class colleges_years extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'college_id',
+        'year_id',
+    ];
+
+    public function year()
+    {
+        return $this->belongsTo(Year::class, 'year_id');
+    }
 }

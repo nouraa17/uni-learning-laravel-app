@@ -5,6 +5,7 @@ use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\GovernmentControllerResource;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\YearControllerResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,8 @@ Route::group(['middleware' => 'changeLang'], function () {
     Route::post('/login', LoginController::class);
     Route::resources([
         'governments' => GovernmentControllerResource::class,
-        'colleges' => CollegeControllerResource::class
+        'colleges' => CollegeControllerResource::class,
+        'years' => YearControllerResource::class,
     ]);
     Route::post('/delete-item',DeleteController::class);
 });

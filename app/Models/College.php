@@ -24,4 +24,14 @@ class College extends Model
             ->withTrashed()
             ;
     }
+
+//    public function years()
+//    {
+//        return $this->hasMany(colleges_years::class, 'college_id');
+//    }
+    public function years()
+    {
+        return $this->belongsToMany(Year::class,colleges_years::class, 'college_id','year_id')
+            ->withPivot('created_at','updated_at')->as('middle_table');
+    }
 }
