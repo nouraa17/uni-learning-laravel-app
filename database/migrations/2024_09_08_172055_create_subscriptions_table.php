@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->tinyInteger('is_locked')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,4 +17,8 @@ class colleges_years extends Model
     {
         return $this->belongsTo(Year::class, 'year_id');
     }
+    public function college()
+    {
+        return $this->belongsTo(College::class, 'college_id');
+    }
 }

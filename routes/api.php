@@ -5,6 +5,8 @@ use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\GovernmentControllerResource;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SubjectControllerResource;
+use App\Http\Controllers\SubscriptionControllerResource;
 use App\Http\Controllers\YearControllerResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +33,8 @@ Route::group(['middleware' => 'changeLang'], function () {
         'governments' => GovernmentControllerResource::class,
         'colleges' => CollegeControllerResource::class,
         'years' => YearControllerResource::class,
+        'subjects' => SubjectControllerResource::class,
+        'subscriptions' => SubscriptionControllerResource::class,
     ]);
     Route::post('/delete-item',DeleteController::class);
 });

@@ -16,4 +16,8 @@ return [
 
     'government_id' => 'government id',
 
+    'user_id' => 'user id',
+    'year_id' => 'year id',
+    'subject_id' => 'subject id',
+
 ];

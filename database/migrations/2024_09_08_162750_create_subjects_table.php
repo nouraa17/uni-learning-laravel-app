@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained('colleges_years')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('info')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
